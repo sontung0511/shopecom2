@@ -20,13 +20,20 @@ const initialState: ProductSliceState = {
 
 export const getProducts = createAsyncThunk('products/list', async () => {
   try {
-    const { data } = await publicAxios.get('/products');
+    const { data } = await publicAxios.get('/product', {
+      headers: {
+        // Your headers here
+        'X-TOKEN-ACCESS': 'ijCCtggxLEkG3Yg8hNKZJvMM4EA1Rw4VjVvyIOb7',
+        'Content-Type': 'application/json',
+      },
+    });
     return data;
   } catch (error: any) {
     const message = setError(error);
     toast.error(message);
   }
 });
+
 
 export const productListSlice = createSlice({
   name: 'products-list',

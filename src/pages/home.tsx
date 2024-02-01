@@ -8,7 +8,7 @@ import { getProducts } from '../redux/products/slice-list';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const { products, loading } = useAppSelector((state) => state.productList);
+  const { products , loading } = useAppSelector((state) => state.productList);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -20,7 +20,7 @@ const HomePage = () => {
         <h2 style={{ color: '#e03a3c' }} className='mt-3'>
           Least Products
         </h2>
-        {loading || !products ? (
+        {loading || !Array.isArray(products) ? (
           <Loader />
         ) : (
           <Row md={3} xs={1} lg={3}>
