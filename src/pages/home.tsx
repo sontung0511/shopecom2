@@ -9,28 +9,33 @@ import { getProducts } from '../redux/products/slice-list';
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const { products , loading } = useAppSelector((state) => state.productList);
-
+  let productsArr = Array.from(products.data)
   useEffect(() => {
     dispatch(getProducts());
+    // console.log("aaa",products.data[0])
   }, [dispatch]);
-
+  
   return (
     <DefaultLayout>
       <Container>
         <h2 style={{ color: '#e03a3c' }} className='mt-3'>
-          Least Products
+          Least Products 
         </h2>
-        {loading || !Array.isArray(products) ? (
+       
+        {loading || !products ? (
           <Loader />
         ) : (
-          <Row md={3} xs={1} lg={3}>
-            {products.map((product) => (
-              <Col key={product._id}>
-                <ProductCard product={product} />
+            <Row md={3} xs={1} lg={3}>
+              {productsArr.map((product) => (
+              <Col key={product.id}>
+                  <ProductCard product={product}/>
               </Col>
+              
             ))}
+              
           </Row>
         )}
+    
       </Container>
     </DefaultLayout>
   );
