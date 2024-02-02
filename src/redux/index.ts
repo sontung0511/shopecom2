@@ -1,18 +1,18 @@
-import { configureStore, combineReducers, compose } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import cartSlice from './cart/cart-slice';
-import { productListSlice } from './products/slice-list';
-import storage from 'redux-persist/lib/storage';
-import { persistStore, persistReducer } from 'redux-persist';
-import orderListSlice from './orders/slice-list';
-import productDetailsSlice from './products/slice-details';
-import loginSlice from './users/login-slice';
-import { authorizationProvider } from '../utils/auth-axios';
-import userDetailsSlice from './users/user-details';
-import userListSlice from './users/user-list';
-import userOrderSlice from './orders/user-orders';
-import orderDetailSlice from './orders/order-details';
-import productFilterSlice from './products/search-list';
+import { configureStore, combineReducers, compose } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import cartSlice from "./cart/cart-slice";
+import { productListSlice } from "./products/slice-list";
+import storage from "redux-persist/lib/storage";
+import { persistStore, persistReducer } from "redux-persist";
+import orderListSlice from "./orders/slice-list";
+import productDetailsSlice from "./products/slice-details";
+import loginSlice from "./users/login-slice";
+import { authorizationProvider } from "../utils/auth-axios";
+import userDetailsSlice from "./users/user-details";
+import userListSlice from "./users/user-list";
+import userOrderSlice from "./orders/user-orders";
+import orderDetailSlice from "./orders/order-details";
+import productFilterSlice from "./products/search-list";
 
 const reducers = combineReducers({
   productList: productListSlice.reducer,
@@ -30,7 +30,7 @@ const reducers = combineReducers({
 });
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
 };
 const persistedReducer = persistReducer(persistConfig, reducers);

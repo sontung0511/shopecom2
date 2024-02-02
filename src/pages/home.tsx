@@ -1,41 +1,37 @@
-import { useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import DefaultLayout from '../components/layouts/default-layout';
-import ProductCard from '../components/product-card';
-import Loader from '../components/UI/loader';
-import { useAppDispatch, useAppSelector } from '../redux';
-import { getProducts } from '../redux/products/slice-list';
+import { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import DefaultLayout from "../components/layouts/default-layout";
+import ProductCard from "../components/product-card";
+import Loader from "../components/UI/loader";
+import { useAppDispatch, useAppSelector } from "../redux";
+import { getProducts } from "../redux/products/slice-list";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const { products , loading } = useAppSelector((state) => state.productList);
-  let productsArr = Array.from(products.data)
+  const { products, loading } = useAppSelector((state) => state.productList);
   useEffect(() => {
+    // console.log("aaa", products);
     dispatch(getProducts());
-    // console.log("aaa",products.data[0])
   }, [dispatch]);
-  
+
   return (
     <DefaultLayout>
       <Container>
-        <h2 style={{ color: '#e03a3c' }} className='mt-3'>
-          Least Products 
+        <h2 style={{ color: "#e03a3c" }} className="mt-3">
+          Least Products
         </h2>
-       
+
         {loading || !products ? (
           <Loader />
         ) : (
-            <Row md={3} xs={1} lg={3}>
-              {productsArr.map((product) => (
+          <Row md={3} xs={1} lg={3}>
+            {products.map((product) => (
               <Col key={product.id}>
-                  <ProductCard product={product}/>
+                <ProductCard product={product} />
               </Col>
-              
             ))}
-              
           </Row>
         )}
-    
       </Container>
     </DefaultLayout>
   );

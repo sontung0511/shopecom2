@@ -1,8 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
-import { Product } from '../../components/product-card';
-import { setError } from '../../utils/error';
-import publicAxios from '../../utils/public-axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
+import { Product } from "../../components/product-card";
+import { setError } from "../../utils/error";
+import publicAxios from "../../utils/public-axios";
 
 export interface ProductSliceState {
   products: Product[];
@@ -18,25 +18,24 @@ const initialState: ProductSliceState = {
   error: null,
 };
 
-export const getProducts = createAsyncThunk('products/list', async () => {
+export const getProducts = createAsyncThunk("products/list", async () => {
   try {
-    const { data } = await publicAxios.get('/product', {
+    const { data } = await publicAxios.get("/product", {
       headers: {
         // Your headers here
-        'X-TOKEN-ACCESS': 'ijCCtggxLEkG3Yg8hNKZJvMM4EA1Rw4VjVvyIOb7',
-        'Content-Type': 'application/json',
+        "X-TOKEN-ACCESS": "ijCCtggxLEkG3Yg8hNKZJvMM4EA1Rw4VjVvyIOb7",
+        "Content-Type": "application/json",
       },
     });
-    return data;
+    return data?.data;
   } catch (error: any) {
     const message = setError(error);
     toast.error(message);
   }
 });
 
-
 export const productListSlice = createSlice({
-  name: 'products-list',
+  name: "products-list",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
