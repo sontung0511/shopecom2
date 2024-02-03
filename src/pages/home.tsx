@@ -9,10 +9,10 @@ import { getProducts } from '../redux/products/slice-list';
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const { products , loading } = useAppSelector((state) => state.productList);
-  let productsArr = Array.from(products.data)
+  // let productsArr = Array.from(products.data)
   useEffect(() => {
     dispatch(getProducts());
-    // console.log("aaa",products.data[0])
+    console.log("aaa",products)
   }, [dispatch]);
   
   return (
@@ -26,7 +26,7 @@ const HomePage = () => {
           <Loader />
         ) : (
             <Row md={3} xs={1} lg={3}>
-              {productsArr.map((product) => (
+              {products.map((product) => (
               <Col key={product.id}>
                   <ProductCard product={product}/>
               </Col>

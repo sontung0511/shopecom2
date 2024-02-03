@@ -48,7 +48,7 @@ const ProductDetails = () => {
       rating,
     };
     authAxios
-      .post(`/products/${product?._id}/reviews`, review)
+      .post(`/products/${product?.id}/reviews`, review)
       .then((res) => {
         toast.success('thank you for the comment 🙂');
         setRefresh((prev) => (prev = !prev));

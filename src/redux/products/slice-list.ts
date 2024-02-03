@@ -12,6 +12,7 @@ export interface ProductSliceState {
 
 const products: Product[] | [] = [];
 
+
 const initialState: ProductSliceState = {
   products: products,
   loading: false,
@@ -27,7 +28,8 @@ export const getProducts = createAsyncThunk('products/list', async () => {
         'Content-Type': 'application/json',
       },
     });
-    return data;
+    return data?.data;
+    
   } catch (error: any) {
     const message = setError(error);
     toast.error(message);
