@@ -4,6 +4,7 @@ import { formatCurrencry } from '../utils/helper';
 import { ReviewTypes } from '../utils/interfaces';
 
 export type Product = {
+  image: string | undefined;
   id: number;
   name: string;
   slug: string;
@@ -23,7 +24,7 @@ type Props = {
 const ProductCard = ({ product }: Props) => {
   return (
     <Card className='my-3 p-3 rounded' style={{ height: '400px' }}>
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/product/show/${product.id}`}>
         <Card.Img
           src={product.feature_image}
           variant='top'

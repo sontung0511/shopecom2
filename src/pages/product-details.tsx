@@ -43,12 +43,12 @@ const ProductDetails = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const review = {
-      comment,
-      rating,
-    };
+    // const review = {
+    //   comment,
+    //   rating,
+    // };
     authAxios
-      .post(`/products/${product?.id}/reviews`, review)
+      .get(`/product/show/${product?.id}`)
       .then((res) => {
         toast.success('thank you for the comment 🙂');
         setRefresh((prev) => (prev = !prev));
@@ -58,6 +58,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(getProductById(id));
+    console.log(getProductById)
     window.scrollTo(0, 0);
   }, [id, dispatch, refresh]);
 
@@ -94,24 +95,7 @@ const ProductDetails = () => {
                   </h5>
                 </ListGroup.Item>
 
-                <ListGroup.Item>
-                  <h5 className=' d-flex justify-content-between align-items-center'>
-                    <span>Category:</span>
-                    <span>{product.category}</span>
-                  </h5>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5 className=' d-flex justify-content-between align-items-center'>
-                    <span>Brand:</span>
-                    <span>{product.brand}</span>
-                  </h5>
-                </ListGroup.Item>
-                <ListGroup.Item>{product.description}</ListGroup.Item>
-                <ListGroup.Item>
-                  <RedButton onClick={onAdd} className='w-full'>
-                    Add To Cart
-                  </RedButton>
-                </ListGroup.Item>
+               
               </ListGroup>
             </Col>
           </Row>
@@ -121,7 +105,7 @@ const ProductDetails = () => {
                 <Card.Body>
                   <h3 style={{ color: '#e03a3c' }}>Reviews</h3>
                   <ListGroup variant='flush'>
-                    {product.reviews.map((review) => (
+                    {/* {product.reviews.map((review) => (
                       <ListGroup.Item key={review._id}>
                         <div className='d-flex'>
                           <strong>{review.name}</strong>
@@ -130,7 +114,7 @@ const ProductDetails = () => {
                         </div>
                         <p>{review.comment}</p>
                       </ListGroup.Item>
-                    ))}
+                    ))} */}
                   </ListGroup>
                 </Card.Body>
               </Card>

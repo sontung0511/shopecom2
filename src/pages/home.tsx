@@ -12,7 +12,6 @@ const HomePage = () => {
   // let productsArr = Array.from(products.data)
   useEffect(() => {
     dispatch(getProducts());
-    console.log("aaa",products)
   }, [dispatch]);
   
   return (

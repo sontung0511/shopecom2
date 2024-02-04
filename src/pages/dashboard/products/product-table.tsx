@@ -41,7 +41,7 @@ function ProductTable() {
   const onDelete = (id: string | number) => {
     if (window.confirm('are you sure?')) {
       authAxios
-        .delete(`/products/${id}`)
+        .delete(`/product/show/${id}`)
         .then((res) => {
           toast.success('Product has beend deleted');
           setRefresh((prev) => (prev = !prev));
@@ -73,24 +73,23 @@ function ProductTable() {
           </h3>
           <TableContainer cols={cols}>
             {products.map((product) => (
-              <tr key={product._id}>
+              <tr key={product.id}>
                 <td>
                   <Image className='avatar' roundedCircle src={product.image} />
                 </td>
                 <td>{product.name}</td>
-                <td>{product.brand}</td>
-                <td>{product.category}</td>
+               
                 <td>{formatCurrencry(product.price)}</td>
-                <td>{getDate(product?.createdAt)}</td>
+             
                 <td>
                   <Link
                     className='btn btn-sm btn-primary me-2'
-                    to={`/dashboard/product-edit/${product._id}`}
+                    to={`/dashboard/product-edit/${product.id}`}
                   >
                     <FaEdit />
                   </Link>
                   <Button
-                    onClick={() => onDelete(product._id)}
+                    onClick={() => onDelete(product.id)}
                     variant='danger'
                     size='sm'
                   >
