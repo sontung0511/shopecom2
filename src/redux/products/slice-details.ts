@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../../components/product-card';
-import publicAxios from '../../utils/public-axios';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { Product } from "../../components/product-card";
+import publicAxios from "../../utils/public-axios";
 
 export interface ProductSliceState {
   product: Product | null;
@@ -15,19 +15,25 @@ const initialState: ProductSliceState = {
 };
 
 export const getProductById = createAsyncThunk(
-  'products/details',
+  "products/details",
   async (id: string | undefined) => {
     try {
-      const res = await publicAxios.get(`/product/${id}`);
+      const res = await publicAxios.get(`/product/show/${id}`, {
+        headers: {
+          // Your headers here
+          "X-TOKEN-ACCESS": "ijCCtggxLEkG3Yg8hNKZJvMM4EA1Rw4VjVvyIOb7",
+          "Content-Type": "application/json",
+        },
+      });
       if (res.data) {
-        return res.data;
+        return res.data?.data;
       }
     } catch (error) {}
   }
 );
 
 export const productDetailsSlice = createSlice({
-  name: 'product-detail',
+  name: "product-detail",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
