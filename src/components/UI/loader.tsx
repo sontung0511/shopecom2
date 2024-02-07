@@ -1,18 +1,17 @@
-import { Spinner } from 'react-bootstrap';
+import { Spinner } from "react-bootstrap";
 
 const Loader = () => {
   return (
     <Spinner
-      animation='border'
-      role='status'
+      animation="border"
+      role="status"
       style={{
-        width: '100px',
-        height: '100px',
-        margin: 'auto',
-        display: 'block',
+        width: "100px",
+        height: "100px",
+        margin: "auto",
       }}
     >
-      <span className='sr-only'></span>
+      <span className="sr-only"></span>
     </Spinner>
   );
 };

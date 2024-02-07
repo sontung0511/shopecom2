@@ -48,7 +48,13 @@ const ProductDetails = () => {
     //   rating,
     // };
     authAxios
-      .get(`/product/show/${product?.id}`)
+      .get(`/product/show/${product?.id}`, {
+        headers: {
+          // Your headers here
+          "X-TOKEN-ACCESS": "ijCCtggxLEkG3Yg8hNKZJvMM4EA1Rw4VjVvyIOb7",
+          "Content-Type": "application/json",
+        },
+      })
       .then((res) => {
         toast.success("thank you for the comment 🙂");
         setRefresh((prev) => (prev = !prev));
@@ -58,7 +64,6 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(getProductById(id));
-    console.log("product:", getProductById);
     window.scrollTo(0, 0);
   }, [id, dispatch, refresh]);
 
